@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import firebase from 'react-native-firebase';
 
 
 export default class Home extends Component {
-
-  componentDidMount() {
-    const email = 'test@test.com';
-    const password = '123456';
-    
-    firebase.auth().signInWithEmailAndPassword(email,password).then(user=> {      
-      console.log('Başarılı: ',user);
-      
-    }).catch(error => {
-      console.log('HATALI: ',error);
-    });
-  }
   render() {
     return (
       <View style={{ flex: 1, }}>

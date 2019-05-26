@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-import { Router, Scene, Tabs,Stack } from 'react-native-router-flux';
+import { Router, Scene, Tabs, Stack } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Login from './components/Login';
-import Home from './components/Home';
-import Explore from './components/Explore';
-import Likes from './components/Likes';
-import Profile from './components/Profile';
-
+import Login from './components/onboarding/Login';
+import Home from './components/pages/Home';
+import Explore from './components/pages/Home';
+import Likes from './components/pages/Home';
+import Profile from './components/pages/Home';
+import Register from './components/onboarding/Register';
 
 const iconn = (name, data) => {
   console.log(data.focused);
@@ -29,6 +29,12 @@ export default class componentName extends Component {
           <Scene
             title='Login'
             component={Login}
+            hideNavBar='true'
+          />
+
+          <Scene
+            title='Register'
+            component={Register}
             hideNavBar='true'
             initial
           />
@@ -68,7 +74,7 @@ export default class componentName extends Component {
               title={'Profil'}
               component={Profile} />
           </Tabs>
-      </Stack>
+        </Stack>
       </Router>
     );
   }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet,TextInput,Dimensions,TouchableOpacity} from 'react-native'
-import Logo from './Logo';
-import Input from './Input';
-import Button from './Button';
-import styles from '../styles/LoginStyle';
+import Logo from '../Logo';
+import Input from '../Input';
+import Button from '../Button';
+import styles from '../../styles/LoginStyle';
+import firebase from 'react-native-firebase';
 
 class Login extends Component {
     state={
