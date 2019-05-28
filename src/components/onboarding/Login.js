@@ -1,29 +1,33 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet,TextInput,Dimensions,TouchableOpacity} from 'react-native'
+import { Text, View, StyleSheet, TextInput, Dimensions, TouchableOpacity } from 'react-native'
 import Logo from '../Logo';
 import Input from '../Input';
 import Button from '../Button';
 import styles from '../../styles/LoginStyle';
 import firebase from 'react-native-firebase';
+import { Actions } from 'react-native-router-flux';
+
 
 class Login extends Component {
-    state={
+    state = {
         email: '',
         password: ''
     }
 
-    handleInputTextChange = (inputName,text) => {
+    handleInputTextChange = (inputName, text) => {
         this.setState({
             [inputName]: text
-        });        
+        });
     }
 
     handleLoginButton = () => {
         console.log('çalıştı');
     }
 
-    handleCreateAccountButton= () => {
-        console.log('createNewAccount');
+    handleCreateAccountButton = () => {
+        console.log('çalıştı');
+
+        Actions.push('register');
     }
 
     render() {
@@ -43,7 +47,7 @@ class Login extends Component {
                         <Input handleTextChange={this.handleInputTextChange} inputName='Email' />
                         <Input handleTextChange={this.handleInputTextChange} inputName='Password' />
                     </View>
-                    
+
                     <View style={styles.forgotPasswordAlignView}>
                         <View style={styles.forgotPasswordView}>
                             <Text style={styles.forgotPasswordText}>
@@ -53,7 +57,7 @@ class Login extends Component {
                     </View>
 
                     <View style={styles.buttonView}>
-                        <Button handleLoginButton={this.handleLoginButton} buttonName='SIGN IN' />
+                        <Button handleButton={this.handleLoginButton} buttonName='SIGN IN' />
                     </View>
                 </View>
 

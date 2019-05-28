@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { TouchableOpacity,Dimensions, Text } from 'react-native'
+import { TouchableOpacity, Dimensions, Text } from 'react-native'
 import styles from '../styles/ButtonStyle';
 
 class Button extends Component {
     render() {
         return (
             <TouchableOpacity
-                onPress={this.props.handleLoginButton}
+                onPress={this.props.handleButton}
                 style={styles.button}
             >
                 <Text style={styles.buttonText}>{this.props.buttonName}</Text>

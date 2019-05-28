@@ -27,16 +27,18 @@ export default class componentName extends Component {
         <Stack key="root">
 
           <Scene
+            key='login'
             title='Login'
             component={Login}
             hideNavBar='true'
+            initial
           />
 
           <Scene
+            key='register'
             title='Register'
             component={Register}
             hideNavBar='true'
-            initial
           />
 
           <Tabs key="main" tabBarStyle={styles.tabBar} showLabel={false}>
@@ -64,7 +66,6 @@ export default class componentName extends Component {
 
             <Scene key="likes"
               icon={(data) => iconn('heart', data)}
-
               title={'Beğeniler'}
               component={Likes} />
 

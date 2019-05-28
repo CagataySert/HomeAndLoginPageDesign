@@ -1,6 +1,6 @@
-import {StyleSheet,Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default styles = StyleSheet.create({
     container: {
@@ -13,7 +13,7 @@ export default styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     login: {
-        flex:5,
+        flex: 5,
     },
     welcomeView: {
         alignItems: 'center',
@@ -22,21 +22,21 @@ export default styles = StyleSheet.create({
     welcomeText: {
         fontSize: 17,
         color: '#5b5a5a',
-        fontFamily:'Euphemia UCAS',
+        fontFamily: 'Euphemia UCAS',
     },
     inputsView: {
         alignItems: 'center',
         marginTop: 25,
     },
     forgotPasswordAlignView: {
-        alignItems:'center',
+        alignItems: 'center',
         marginTop: 5
     },
-    forgotPasswordView:{
+    forgotPasswordView: {
         width: width * 0.8,
         alignItems: 'flex-end'
     },
-    forgotPasswordText:{
+    forgotPasswordText: {
         fontSize: 10,
         color: '#5b5a5a'
     },

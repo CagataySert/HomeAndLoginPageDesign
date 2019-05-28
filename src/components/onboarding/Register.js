@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Dimensions, Text, View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
 import Button from '../Button';
 import RegisterInputs from './RegisterInputs';
-
+import styles from '../../styles/RegisterStyle';
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux'
+import { postRegisterData } from '../../actions/AuthActions';
 
 const { width } = Dimensions.get('window');
 
@@ -17,8 +20,21 @@ class Register extends Component {
     }
 
     handleBackButton = () => {
-        console.log('çalıştı back');
+        Actions.pop();
     }
+
+    handleRegisterButton = () => {
+        console.log(this.props);
+
+        this.props.postRegisterData(this.state);
+    }
+
+    updateState = (newState) => {
+        this.setState({
+            ...newState
+        });
+    }
+
 
     render() {
         return (
@@ -35,7 +51,7 @@ class Register extends Component {
 
                 <View style={styles.register}>
                     <View style={styles.inputBox}>
-                        <RegisterInputs />
+                        <RegisterInputs triggerParentUpdate={this.updateState} />
                     </View>
 
                     <View style={styles.conditionsView}>
@@ -48,7 +64,7 @@ class Register extends Component {
                 </View>
 
                 <View style={styles.footer}>
-                    <Button buttonName='Create New Account' />
+                    <Button handleButton={this.handleRegisterButton} buttonName='Create New Account' />
                 </View>
             </SafeAreaView>
 
@@ -56,52 +72,11 @@ class Register extends Component {
     }
 }
 
+const mapStateToProps = ({ registerResponse }) => {
+    console.log('register mapstateprops');
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#f5f6f7',
-        flex: 1,
-    },
-    caption: {
-        flex: 3,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    backButton: {
-        fontSize: 30,
-        color: '#5b5a5a',
-        marginLeft: 20,
-        marginTop: 20
-    },
-    captionText: {
-        color: '#5b5a5a',
-        fontSize: 20,
-        fontWeight: '400'
-    },
-    register: {
-        flex: 5,
-        alignItems: 'center'
-    },
-    conditionsView: {
-        alignItems: 'center',
-        marginTop: 15
-    },
-    conditionsText: {
-        color: '#5b5a5a'
-    },
-    conditionsLinkView: {
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    conditionsLink: {
-        color: 'orange'
-    },
-    footer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    }
-});
+    console.log(registerResponse);
+    return { asd: 1 };
+}
 
-
-export default Register;
+export default connect(mapStateToProps, { postRegisterData })(Register);
