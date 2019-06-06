@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux';
 
-
-export default class Home extends Component {
+class Home extends Component {
   render() {
+    const userData = this.props.user;
     return (
       <View style={{ flex: 1, }}>
 
@@ -17,7 +18,7 @@ export default class Home extends Component {
             />
 
             <Text style={{ padding: 10 }}>
-              Cagatay Sert
+              {userData.firstName} {userData.lastName}
             </Text>
           </View>
 
@@ -55,3 +56,12 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ authResponse }) => {
+  console.log('HOME:', authResponse.data);
+
+  return { user: authResponse.data };
+}
+
+
+export default connect(mapStateToProps, {})(Home);

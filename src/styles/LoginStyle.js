@@ -3,8 +3,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f6f7'
+    },
     container: {
-        backgroundColor: '#f5f6f7',
         flex: 1,
     },
     logo: {
@@ -37,7 +42,7 @@ export default styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     forgotPasswordText: {
-        fontSize: 10,
+        fontSize: 14,
         color: '#5b5a5a'
     },
     buttonView: {
@@ -53,7 +58,7 @@ export default styles = StyleSheet.create({
         marginBottom: 15
     },
     createAccountText: {
-        fontSize: 10,
+        fontSize: 14,
         color: 'orange',
     }
 });

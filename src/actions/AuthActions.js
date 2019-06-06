@@ -1,6 +1,37 @@
 import firebase from 'react-native-firebase';
 import { Actions } from 'react-native-router-flux';
-import { REGISTER_SUCCESS, REGISTER_FAILED, REGISTER_START } from './types';
+import {
+    LOGIN_START,
+    LOGIN_SUCCESS,
+    LOGIN_FAILED,
+    REGISTER_SUCCESS,
+    REGISTER_FAILED,
+    REGISTER_START
+} from './types';
+
+
+
+export const login = ({ email, password }) => {
+    return async dispatch => {
+        try {
+            dispatch({ type: LOGIN_START });
+            const userData = await firebase.auth().signInWithEmailAndPassword(email, password);
+            const userId = userData.user._user.uid;
+
+
+            const userDetailData = await firebase.firestore().collection('users').doc(userId).get();
+
+            dispatch({ type: LOGIN_SUCCESS, payload: userDetailData._data });
+
+            Actions.reset('main');
+        }
+        catch (error) {
+            console.log(error.message);
+            dispatch({ type: LOGIN_FAILED });
+
+        }
+    }
+}
 
 
 

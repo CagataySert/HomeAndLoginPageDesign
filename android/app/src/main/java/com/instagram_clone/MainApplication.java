@@ -1,5 +1,6 @@
 package com.instagram_clone;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
@@ -11,6 +12,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
+import com.imagepicker.ImagePickerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
       return BuildConfig.DEBUG;
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
@@ -30,7 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(),
             new VectorIconsPackage(),
-              new RNFirebaseFirestorePackage()
+              new RNFirebaseFirestorePackage(),
+              new RNFirebaseStoragePackage(),
+              new ImagePickerPackage()
       );
     }
 

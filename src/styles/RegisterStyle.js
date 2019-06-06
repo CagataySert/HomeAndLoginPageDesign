@@ -13,7 +13,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
     },
     backButton: {
-        fontSize: 30,
+        fontSize: 25,
         color: '#5b5a5a',
         marginLeft: 20,
         marginTop: 20

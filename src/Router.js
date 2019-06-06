@@ -6,9 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Login from './components/onboarding/Login';
 import Home from './components/pages/Home';
-import Explore from './components/pages/Home';
-import Likes from './components/pages/Home';
-import Profile from './components/pages/Home';
+import Explore from './components/pages/Explore';
+import Likes from './components/pages/Likes';
+import Profile from './components/pages/Profile';
 import Register from './components/onboarding/Register';
 
 const iconn = (name, data) => {

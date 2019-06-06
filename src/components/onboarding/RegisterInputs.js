@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { TextInput, Dimensions, View, StyleSheet } from 'react-native'
+import { TextInput, View, StyleSheet } from 'react-native'
 import styles from '../../styles/RegisterInputStyle';
-
-const { width } = Dimensions.get('window');
 
 export default class RegisterInputs extends Component {
 
@@ -59,6 +57,7 @@ export default class RegisterInputs extends Component {
                     onChangeText={(text) => this.handleChangeText('password', text)}
                     value={this.state.password}
                     placeholder='Password'
+                    secureTextEntry={true}
                 />
             </View>
         )

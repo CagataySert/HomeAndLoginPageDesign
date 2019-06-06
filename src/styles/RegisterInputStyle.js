@@ -16,19 +16,22 @@ export default styles = StyleSheet.create({
         height: 55,
         borderColor: '#cfd0d1',
         borderBottomColor: 'transparent',
-        borderWidth: 1
+        borderWidth: 1,
+        fontSize: 18
     },
     input: {
         width: width * 0.8,
         height: 55,
         borderColor: '#cfd0d1',
         borderBottomColor: 'transparent',
-        borderWidth: 1
+        borderWidth: 1,
+        fontSize: 18
     },
     passwordInput: {
         width: width * 0.8,
         height: 55,
         borderColor: '#cfd0d1',
-        borderWidth: 1
+        borderWidth: 1,
+        fontSize: 18
     }
 });
