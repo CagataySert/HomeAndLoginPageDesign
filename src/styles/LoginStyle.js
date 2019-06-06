@@ -60,5 +60,11 @@ export default styles = StyleSheet.create({
     createAccountText: {
         fontSize: 14,
         color: 'orange',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 14,
+        marginBottom: 10,
+        marginTop: 6
     }
 });

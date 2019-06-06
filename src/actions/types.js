@@ -16,4 +16,6 @@ export const LOGIN_FAILED = 'login_failed';
 export const UPLOAD_START = 'upload_photo';
 export const UPLOAD_SUCCESS = 'upload_success';
 export const UPLOAD_FAILED = 'upload_failed';
-export const GET_PHOTO = 'get_photo';
+export const GET_PHOTOS_START = 'get_photos_start';
+export const GET_PHOTOS_SUCCESS = 'get_photos_success';
+export const GET_PHOTOS_FAILED = 'get_photos_failed';

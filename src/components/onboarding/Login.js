@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { Text, View, ActivityIndicator, TouchableOpacity, Alert } from 'react-native'
 import Logo from '../Logo';
 import Input from './LoginInput';
 import Button from '../Button';
@@ -7,12 +7,14 @@ import styles from '../../styles/LoginStyle';
 import { Actions } from 'react-native-router-flux';
 import { login } from '../../actions/AuthActions';
 import { connect } from 'react-redux';
-
+import validate from '../validate';
 
 class Login extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        emailError: '',
+        passwordError: ''
     }
 
     handleInputTextChange = (inputName, text) => {
@@ -21,8 +23,20 @@ class Login extends Component {
         });
     }
 
-    handleLoginButton = () => {
-        this.props.login(this.state);
+    handleLoginButton = async () => {
+        const state = this.state;
+
+        const emailError = await validate('email', state.email);
+        const passwordError = await validate('password', state.password);
+
+        this.setState({
+            emailError,
+            passwordError
+        });
+
+        if (!emailError && !passwordError) {
+            this.props.login(state);
+        }
     }
 
     handleCreateAccountButton = () => {
@@ -47,10 +61,23 @@ class Login extends Component {
                                     <Text style={styles.welcomeText}>WELCOME</Text>
                                 </View>
 
-                                <View style={styles.inputsView}>
-                                    <Input handleTextChange={this.handleInputTextChange} inputName='email' />
-                                    <Input handleTextChange={this.handleInputTextChange} inputName='password' />
-                                </View>
+                                {
+                                    this.state.emailError || this.state.passwordError
+                                        ?
+                                        <View style={styles.inputsView}>
+                                            <Input handleTextChange={this.handleInputTextChange} inputName='email' />
+                                            <Text style={styles.errorText}>{this.state.emailError}</Text>
+
+                                            <Input handleTextChange={this.handleInputTextChange} inputName='password' />
+                                            <Text style={styles.errorText}>{this.state.passwordError}</Text>
+
+                                        </View>
+                                        :
+                                        <View style={styles.inputsView}>
+                                            <Input handleTextChange={this.handleInputTextChange} inputName='email' />
+                                            <Input handleTextChange={this.handleInputTextChange} inputName='password' />
+                                        </View>
+                                }
 
                                 <View style={styles.forgotPasswordAlignView}>
                                     <View style={styles.forgotPasswordView}>

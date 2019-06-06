@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { connect } from 'react-redux';
+import { getPhotos } from '../../actions/PhotoActions';
 
 class Home extends Component {
+
+  componentWillMount() {
+    this.props.getPhotos();
+  }
+
+
   render() {
     const userData = this.props.user;
     return (
@@ -29,11 +36,21 @@ class Home extends Component {
         </View>
 
 
-        <View style={{ flex: 7.5, flexDirection: 'row', backgroundColor: '', borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
-          <Image
-            style={{ flex: 1 }}
-            source={{ uri: 'https://bit.ly/2VhEcAL' }}
-          />
+        <View style={{ flex: 7.5, backgroundColor: '', borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
+
+          {
+            this.props.loading
+              ?
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size='large' color='#129793' />
+              </View>
+              :
+              <Image
+                style={{ flex: 1 }}
+                source={{ uri: this.props.photosUrlArray ? this.props.photosUrlArray[1] : '' }}
+              />
+          }
+
         </View>
 
 
@@ -57,11 +74,13 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ authResponse }) => {
-  console.log('HOME:', authResponse.data);
+const mapStateToProps = ({ authResponse, photoResponse }) => {
+  console.log('HOME AUTH:', authResponse.data);
+  console.log('HOME PHOTO:', photoResponse.data);
 
-  return { user: authResponse.data };
+
+  return { user: authResponse.data, photosUrlArray: photoResponse.data, loading: photoResponse.loading };
 }
 
 
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps, { getPhotos })(Home);

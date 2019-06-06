@@ -19,13 +19,13 @@ export default (state = INITIAL_STATE, { payload, type }) => {
         case LOGIN_SUCCESS:
             return { ...state, loading: false, data: payload };
         case LOGIN_FAILED:
-            return { ...state, loading: false };
+            return { ...state, loading: false, data: payload };
         case REGISTER_START:
             return { ...state, loading: true };
         case REGISTER_SUCCESS:
             return { ...state, loading: false };
         case REGISTER_FAILED:
-            return { ...state, loading: false };
+            return { ...state, loading: false, data: payload };
         default:
             return state;
     }

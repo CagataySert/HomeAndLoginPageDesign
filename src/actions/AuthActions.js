@@ -18,16 +18,14 @@ export const login = ({ email, password }) => {
             const userData = await firebase.auth().signInWithEmailAndPassword(email, password);
             const userId = userData.user._user.uid;
 
-
             const userDetailData = await firebase.firestore().collection('users').doc(userId).get();
 
             dispatch({ type: LOGIN_SUCCESS, payload: userDetailData._data });
-
             Actions.reset('main');
         }
         catch (error) {
             console.log(error.message);
-            dispatch({ type: LOGIN_FAILED });
+            dispatch({ type: LOGIN_FAILED, payload: error.message });
 
         }
     }
@@ -53,7 +51,7 @@ export const postRegisterData = ({ email, password, userName, firstName, lastNam
                     console.log('Kayıt Başarılı: ', success);
                 }).catch(error => {
                     console.log('Kayıt Başarısız: ', error);
-                    dispatch({ type: REGISTER_FAILED });
+                    dispatch({ type: REGISTER_FAILED, payload: error.message });
                 })
                 Actions.pop();
             }).catch(error => {
