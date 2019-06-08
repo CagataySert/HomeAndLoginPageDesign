@@ -109,6 +109,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = ({ authResponse }) => {
+    authResponse.error && Alert.alert('Oops!', authResponse.error);
     return { loading: authResponse.loading };
 }
 

@@ -15,9 +15,9 @@ export const login = ({ email, password }) => {
     return async dispatch => {
         try {
             dispatch({ type: LOGIN_START });
+
             const userData = await firebase.auth().signInWithEmailAndPassword(email, password);
             const userId = userData.user._user.uid;
-
             const userDetailData = await firebase.firestore().collection('users').doc(userId).get();
 
             dispatch({ type: LOGIN_SUCCESS, payload: userDetailData._data });
@@ -39,6 +39,7 @@ export const postRegisterData = ({ email, password, userName, firstName, lastNam
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(user => {
                 const id = user.user._user.uid;
+
                 dispatch({ type: REGISTER_SUCCESS });
 
                 firebase.firestore().collection('users').doc(id).set({

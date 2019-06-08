@@ -12,9 +12,11 @@ import { Actions } from 'react-native-router-flux';
 export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
     return async dispatch => {
         try {
+            Actions.pop();
+            dispatch({ type: UPLOAD_START });
+
             const userId = firebase.auth().currentUser.uid;
             const photoId = await uniqueIdGenerator();
-            dispatch({ type: UPLOAD_START });
 
             const snapshot = await firebase.storage().ref()
                 .child(`/photos/${userId}`)
@@ -27,7 +29,6 @@ export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
                 .set({ url: snapshot.downloadURL });
 
             dispatch({ type: UPLOAD_SUCCESS, payload: snapshot.downloadURL });
-            Actions.pop();
         }
         catch (error) {
             dispatch({ type: UPLOAD_FAILED });

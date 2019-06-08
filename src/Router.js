@@ -20,11 +20,8 @@ export default class componentName extends Component {
 
   render() {
     return (
-      <Router
-        navigationBarStyle={styles.navBar}
-        titleStyle={styles.titleStyle}
-      >
-        <Stack key="root">
+      <Router>
+        <Stack hideNavBar='true' key="root">
 
           <Scene
             key='login'
@@ -41,7 +38,7 @@ export default class componentName extends Component {
             hideNavBar='true'
           />
 
-          <Tabs key="main" tabBarStyle={styles.tabBar} showLabel={false}>
+          <Tabs key="main" tabBarStyle={[styles.tabBar]} showLabel={false}>
             <Scene key="home"
               title="Instagram"
               icon={(data) => iconn('home', data)}
@@ -90,8 +87,8 @@ const styles = {
     borderTopWidth: 0.3,
     backgroundColor: 'ghostwhite',
   },
-  navigationBarStyle: {
-    backgroundColor: 'red',
+  homeNavBar: {
+    backgroundColor: 'ghostwhite'
   },
   navigationBarTitleStyle: {
     color: 'white',

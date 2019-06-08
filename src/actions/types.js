@@ -13,7 +13,7 @@ export const LOGIN_FAILED = 'login_failed';
 
 
 //Photo Section
-export const UPLOAD_START = 'upload_photo';
+export const UPLOAD_START = 'upload_start';
 export const UPLOAD_SUCCESS = 'upload_success';
 export const UPLOAD_FAILED = 'upload_failed';
 export const GET_PHOTOS_START = 'get_photos_start';
