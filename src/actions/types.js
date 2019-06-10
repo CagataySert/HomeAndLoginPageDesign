@@ -19,3 +19,4 @@ export const UPLOAD_FAILED = 'upload_failed';
 export const GET_PHOTOS_START = 'get_photos_start';
 export const GET_PHOTOS_SUCCESS = 'get_photos_success';
 export const GET_PHOTOS_FAILED = 'get_photos_failed';
+export const CHANGE_PHOTO_LIKE_STATUS = 'change_photo_like_status';
