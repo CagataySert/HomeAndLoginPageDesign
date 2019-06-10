@@ -33,6 +33,9 @@ class Explore extends Component {
   handleUploadPhotoButton = () => {
     const uri = this.state.photoUri;
     this.props.uploadPhoto(uri);
+    this.setState({
+      photoUri: null
+    });
   }
 
   render() {
