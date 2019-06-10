@@ -3,11 +3,12 @@ import {
     GET_PHOTOS_SUCCESS,
     GET_PHOTOS_FAILED,
     UPLOAD_START, UPLOAD_SUCCESS,
-    UPLOAD_FAILED
+    UPLOAD_FAILED,
+    CHANGE_PHOTO_LIKE_STATUS
 } from './types';
 import firebase from 'react-native-firebase';
 import { Actions } from 'react-native-router-flux';
-
+import { uniqueIdGenerator } from '../components/UniqueIdGenerator';
 
 export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
     return async dispatch => {
@@ -26,9 +27,9 @@ export const uploadPhoto = (uri, contentType = 'image/jpeg') => {
             await firebase.firestore()
                 .collection('users').doc(userId)
                 .collection('photos').doc(photoId)
-                .set({ url: snapshot.downloadURL });
+                .set({ url: snapshot.downloadURL, isLiked: false });
 
-            dispatch({ type: UPLOAD_SUCCESS, payload: snapshot.downloadURL });
+            dispatch({ type: UPLOAD_SUCCESS, payload: { url: snapshot.downloadURL, id: photoId, isLiked: false } });
         }
         catch (error) {
             dispatch({ type: UPLOAD_FAILED });
@@ -48,7 +49,7 @@ export const getPhotos = () => {
                 .collection('photos').get();
 
             let photosUrlArray = [];
-            await photos.docs.map(doc => photosUrlArray.push(doc._data.url));
+            await photos.docs.map(doc => photosUrlArray.push({ id: doc.id, url: doc._data.url }));
 
             dispatch({ type: GET_PHOTOS_SUCCESS, payload: photosUrlArray });
         }
@@ -59,8 +60,22 @@ export const getPhotos = () => {
     }
 }
 
+export const changePhotoLikeStatus = (photoId, isLiked) => {
+    return dispatch => {
+        try {
+            const userId = firebase.auth().currentUser.uid;
+            const response = firebase.firestore()
+                .collection('users').doc(userId)
+                .collection('photos').doc(photoId)
+                .update({
+                    isLiked
+                });
+            console.log(response);
 
-
-const uniqueIdGenerator = () => {
-    return Math.random().toString(36);
+            dispatch({ type: CHANGE_PHOTO_LIKE_STATUS });
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
 }
