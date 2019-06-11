@@ -23,7 +23,7 @@ export default class componentName extends Component {
       <Router>
         <Stack hideNavBar='true' key="root">
 
-          <Scene
+          {/* <Scene
             key='login'
             title='Login'
             component={Login}
@@ -36,7 +36,7 @@ export default class componentName extends Component {
             title='Register'
             component={Register}
             hideNavBar='true'
-          />
+          /> */}
 
           <Tabs key="main" tabBarStyle={[styles.tabBar]} showLabel={false}>
             <Scene key="home"
@@ -70,7 +70,9 @@ export default class componentName extends Component {
             <Scene key="profile"
               icon={(data) => iconn('user', data)}
               title={'Profil'}
-              component={Profile} />
+              component={Profile}
+              initial
+            />
           </Tabs>
         </Stack>
       </Router>
