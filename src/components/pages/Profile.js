@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import Seperator from '../Seperator';
 
 
+const { width, height } = Dimensions.get('window');
+
 export default class Profile extends Component {
 
+  state = {
+    photoUrls: [
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' },
+      { url: 'https://bit.ly/2KeqVrD' }
+    ]
+  }
+
   render() {
+    console.log(Math.ceil(this.state.photoUrls.length / 3));
+
     return (
       <View style={styles.container}>
         <View style={styles.topMenu}>
@@ -77,7 +94,19 @@ export default class Profile extends Component {
         <Seperator />
 
         <View style={styles.photos}>
-
+          {
+            <FlatList
+              data={this.state.photoUrls}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal={false}
+              numColumns={3}
+              renderItem={({ item }) => (
+                <View style={styles.photo}>
+                  <Image style={{ flex: 1 }} source={{ uri: item.url }} />
+                </View>
+              )}
+            />
+          }
         </View>
 
       </View>
@@ -163,22 +192,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10
   },
-
-
-
-
-
-
-
-
-
-
-
   profileDescription: {
     flex: 2,
   },
   photos: {
     flex: 6,
+  },
+  photo: {
+    width: (width / 3) - 1,
+    height: width / 3,
+    marginTop: 1,
+    marginRight: 1
   }
-
 })
